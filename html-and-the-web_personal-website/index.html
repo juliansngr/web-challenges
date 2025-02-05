@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: monospace;
+        margin: 0;
+        padding: 0px 20vw;
+        background-color: #34495e;
+      }
+
+      h1 {
+        padding: 0px;
+        maring: 0px;
+      }
+
+      /* vvvv Colors vvvv */
+
+      .white {
+        color: white;
+      }
+
+      .blue {
+        background-color: #74b9ff;
+      }
+
+      .green {
+        background-color: #00b894;
+      }
+
+      .red {
+        background-color: #d63031;
+      }
+
+      .yellow {
+        background-color: #ffa600;
+      }
+
+      /* ^^^^ Colors ^^^^ */
+
+      nav {
+        display: flex;
+        background-color: #2c3e50;
+        padding: 10px 0px;
+        margin: 0px 0px 10vh 0px;
+      }
+      .navlinks {
+        display: flex;
+
+        gap: 4em;
+      }
+      .navlinkitem {
+        font-size: 1.5em;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .navlinkitem:hover {
+        text-decoration-line: underline;
+      }
+      .nav-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .margin-auto {
+        margin: auto;
+      }
+
+      .selfie {
+        width: 50%;
+        margin: 0vw 5vw 0vw 0vw;
+      }
+
+      .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .tags-container {
+        margin: 0;
+      }
+
+      .tag-item-container {
+        display: flex;
+
+        flex-flow: wrap;
+        gap: 15px;
+      }
+
+      .tag-item {
+        color: white;
+        font-size: 1.2em;
+        font-weight: 800;
+        padding: 5px 15px;
+        border-radius: 50px;
+        white-space: nowrap;
+        transition: transform 1s, filter 1s;
+      }
+
+      .tag-item:hover {
+        filter: brightness(130%);
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <h1 class="white">Julian Dürr</h1>
+        <div class="navlinks">
+          <a href="" class="navlinkitem white">Kontakt</a>
+          <a href="" class="navlinkitem white">Biographie</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header">
+      <img src="img/selfie.png" alt="picture of me" class="selfie" />
+      <div class="tags-container">
+        <div class="tags-block">
+          <h1 class="white">Interests</h1>
+          <div class="tag-item-container">
+            <p class="tag-item red">Music</p>
+            <p class="tag-item green">Space</p>
+            <p class="tag-item yellow">Tech</p>
+            <p class="tag-item blue">Politics</p>
+          </div>
+        </div>
+        <div class="tags-block">
+          <h1 class="white">Skills</h1>
+          <div class="tag-item-container">
+            <p class="tag-item yellow">FL Studio</p>
+            <p class="tag-item green">Blender</p>
+            <p class="tag-item blue">Photoshop</p>
+            <p class="tag-item red">Politics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
