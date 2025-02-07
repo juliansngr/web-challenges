@@ -37,28 +37,47 @@ main {
 
 .box--top-left {
   background-color: #aed6f1;
+  position: absolute;
 }
 
 .box--top-center {
   background-color: #85c1e9;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
 }
 
 .box--top-right {
   background-color: #5dade2;
+  position: absolute;
+  right: 0;
 }
 
 .box--center {
   background-color: #3498db;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
 }
 
 .box--bottom-left {
   background-color: #2874a6;
+  position: absolute;
+  bottom: 0;
 }
 
 .box--bottom-center {
   background-color: #21618c;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50%;
 }
 
 .box--bottom-right {
   background-color: #1b4f72;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
