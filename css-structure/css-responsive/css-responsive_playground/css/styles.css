@@ -108,19 +108,27 @@ h1 {
 /* --------- */ /* --------- */ /* --------- */ /* --------- */
 
 .box--four {
-  background-color: lightgray;
-
   width: 100px;
   height: 100px;
 }
+
+@media (prefers-color-scheme: dark) {
+  .box--four {
+    background-color: #252629;
+  }
+}
+
+/* @media (prefers-color-scheme: light) {
+  .box--four {
+    background-color: lightgray;
+  }
+} */
 
 /* --------- */ /* --------- */ /* --------- */ /* --------- */
 
 .box--five {
   width: 100%;
 }
-
-/* --------- */ /* --------- */ /* --------- */ /* --------- */
 
 .box--five img {
   width: 100%;
