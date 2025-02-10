@@ -59,12 +59,16 @@ h1 {
   margin: auto;
 }
 
+/* --------- */ /* --------- */ /* --------- */ /* --------- */
+
 .box--one {
   background-color: lightblue;
 
-  width: 100px;
+  width: 50%;
   height: 100px;
 }
+
+/* --------- */ /* --------- */ /* --------- */ /* --------- */
 
 .box--two {
   background-color: lightgreen;
@@ -72,6 +76,20 @@ h1 {
   width: 100px;
   height: 100px;
 }
+
+@media (min-width: 599px) {
+  .box--two {
+    width: 200px;
+  }
+}
+
+@media (min-width: 1199px) {
+  .box--two {
+    width: 400px;
+  }
+}
+
+/* --------- */ /* --------- */ /* --------- */ /* --------- */
 
 .box--three {
   background-color: lightpink;
