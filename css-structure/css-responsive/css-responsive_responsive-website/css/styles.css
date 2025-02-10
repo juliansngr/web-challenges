@@ -248,6 +248,8 @@ CSS based on conditions such as viewport width, etc. */
 /* Replace this comment with your media query. */
 /* --- */
 
+/* With Grid */
+
 @media (min-width: 500px) {
   .card-section {
     padding: var(--gap);
