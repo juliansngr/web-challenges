@@ -11,6 +11,12 @@ console.clear();
 
 // --v-- write your code here --v--
 
+const postTitle = "First Social Media Post!";
+const postDescription =
+  "This is the amazing post description for my first social media post!";
+const likesReceived = 1337;
+const isReported = false;
+
 // --^-- write your code here --^--
 
 /*
@@ -18,5 +24,10 @@ console.clear();
 */
 
 // --v-- write your code here --v--
+
+console.log(postTitle);
+console.log(postDescription);
+console.log(likesReceived, "Likes");
+console.log(isReported);
 
 // --^-- write your code here --^--
