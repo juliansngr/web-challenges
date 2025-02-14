@@ -9,7 +9,12 @@ console.clear();
 */
 
 // --v-- write your code here --v--
-
+const book = {
+  title: "Steuerhinterziehung für Dummies",
+  author: "Finanzamt",
+  rating: "3",
+  copies_sold: 12,
+};
 // --^-- write your code here --^--
 
 /*
@@ -20,6 +25,8 @@ Author: Mario
 Rating: 4.2
 Sales: 120
 
+
+
 Then:
 - Increase the number of sales.
 - Update the book's rating.
@@ -27,6 +34,23 @@ Then:
 */
 
 // --v-- write your code here --v--
+
+logBookData();
+
+// console.log("Title: " + book.title);
+// console.log("Author: " + book.author);
+// console.log("Rating: " + book.rating);
+// console.log("Sales: " + book.copies_sold);
+
+book.rating = "7";
+book.copies_sold = book.copies_sold + 12;
+
+// console.log("Title: " + book.title);
+// console.log("Author: " + book.author);
+// console.log("Rating: " + book.rating);
+// console.log("Sales: " + book.copies_sold);
+
+logBookData();
 
 // --^-- write your code here --^--
 
@@ -40,5 +64,18 @@ Then:
 */
 
 // --v-- write your code here --v--
+function logBookData() {
+  console.log("Title: " + book.title);
+  console.log("Author: " + book.author);
+  console.log("Rating: " + book.rating);
+  console.log("Sales: " + book.copies_sold);
+}
 
+book.copies_sold = book.copies_sold + 12;
+
+logBookData();
+
+book.copies_sold = book.copies_sold + 12;
+
+logBookData();
 // --^-- write your code here --^--
