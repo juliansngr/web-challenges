@@ -4,12 +4,12 @@
 
 Switch the values of two input fields when clicking the switch button.
 
-- [ ] Add a second input element to `index.html`.
-- [ ] Assign the second input element to a variable.
-- [ ] Add a third button (a switch button) to the `index.html`.
-- [ ] Assign the switch button to a variable.
-- [ ] Ensure that when the switch button is clicked, the values of the two input fields are swapped.
-- [ ] Verify that all three buttons work correctly for both input fields.
+- [x] Add a second input element to `index.html`.
+- [x] Assign the second input element to a variable.
+- [x] Add a third button (a switch button) to the `index.html`.
+- [x] Assign the switch button to a variable.
+- [x] Ensure that when the switch button is clicked, the values of the two input fields are swapped.
+- [x] Verify that all three buttons work correctly for both input fields.
 
 Hint: Use the HTML entity &updownarrow; for the switch button symbol.
 
