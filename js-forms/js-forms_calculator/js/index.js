@@ -24,9 +24,33 @@ form.addEventListener("submit", (event) => {
 
   let result;
 
-  // --v-- write your code here --v--
+  if (event.target.elements.operator.value === "addition") {
+    result = add(
+      Number(event.target.elements.numberA.value),
+      Number(event.target.elements.numberB.value)
+    );
+  }
 
-  // --^-- write your code here --^--
+  if (event.target.elements.operator.value === "subtraction") {
+    result = subtract(
+      Number(event.target.elements.numberA.value),
+      Number(event.target.elements.numberB.value)
+    );
+  }
+
+  if (event.target.elements.operator.value === "multiplication") {
+    result = multiply(
+      Number(event.target.elements.numberA.value),
+      Number(event.target.elements.numberB.value)
+    );
+  }
+
+  if (event.target.elements.operator.value === "division") {
+    result = divide(
+      Number(event.target.elements.numberA.value),
+      Number(event.target.elements.numberB.value)
+    );
+  }
 
   resultOutput.textContent = result;
 });
