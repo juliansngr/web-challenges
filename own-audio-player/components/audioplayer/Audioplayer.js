@@ -1,29 +1,5 @@
 import { audioDatabase } from "../../utils/audio-database.js";
-
-let audioElement = new Audio(``);
-
-// export function TrackSelect() {
-//   const trackContainer = document.createElement("div");
-
-//   audioDatabase.forEach((track) => {
-//     const trackSelectButton = document.createElement("button");
-//     trackSelectButton.textContent = `${track.name}`;
-//     trackSelectButton.classList.add("trackselect__track");
-
-//     trackSelectButton.addEventListener("click", () => {
-//       audioElement.load();
-//       durationBar.value = 0;
-//       const percentage = durationBar.value;
-//       durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, #ddd ${percentage}%)`;
-//       audioElement = new Audio(`${track.path}`);
-//       console.log(audioElement);
-//     });
-
-//     trackContainer.append(trackSelectButton);
-//   });
-
-//   document.body.append(trackContainer);
-// }
+import { pauseSymbol, playSymbol } from "../../utils/svg.js";
 
 function playAudio(audioElement) {
   audioElement.play();
@@ -38,76 +14,78 @@ function stopAudio(audioElement) {
 }
 
 export function AudioPlayer() {
+  const audioElement = document.createElement("audio");
+  const audioSource = document.createElement("source");
+  audioElement.append(audioSource);
+
   const audioPlayerElement = document.createElement("div");
   audioPlayerElement.classList.add("audioplayer");
+
+  const coverElement = document.createElement("img");
+  coverElement.classList.add("audioplayer__coverimage");
 
   const buttonContainer = document.createElement("div");
   buttonContainer.classList.add("audioplayer__buttoncontainer");
 
   const playButton = document.createElement("button");
-  playButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="audioplayer__icon" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2M9.5 14.67V9.33c0-.79.88-1.27 1.54-.84l4.15 2.67a1 1 0 0 1 0 1.68l-4.15 2.67c-.66.43-1.54-.05-1.54-.84"></path></svg>`;
+  playButton.innerHTML = playSymbol;
   playButton.classList.add("audioplayer__button");
 
-  const stopButton = document.createElement("button");
-  stopButton.innerHTML = "Stop";
-  stopButton.classList.add("audioplayer__button");
-
-  buttonContainer.append(playButton, stopButton);
+  buttonContainer.append(playButton);
 
   const durationBar = document.createElement("input");
   durationBar.setAttribute("type", "range");
   durationBar.classList.add("audioplayer__progressbar");
 
-  audioPlayerElement.append(durationBar, buttonContainer);
+  const trackSelect = document.createElement("select");
+  trackSelect.classList.add("trackselect__select");
 
-  //   console.log(typeof audioElement.duration);
+  audioDatabase.forEach((track) => {
+    const trackOption = document.createElement("option");
+    trackOption.value = `${track.path}`;
+    trackOption.textContent = `${track.name}`;
+    trackOption.setAttribute("img", `${track.cover}`);
+    trackSelect.append(trackOption);
+  });
+
+  trackSelect.addEventListener("change", () => {
+    audioElement.pause();
+    audioElement.src = trackSelect.value;
+    coverElement.src = trackSelect.selectedOptions[0].getAttribute("img");
+    playButton.innerHTML = playSymbol;
+  });
+
+  audioPlayerElement.append(
+    coverElement,
+    trackSelect,
+    durationBar,
+    buttonContainer
+  );
 
   playButton.addEventListener("click", () => {
     durationBar.setAttribute("max", `${audioElement.duration}`);
     if (audioElement.paused) {
       playAudio(audioElement);
-      playButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="audioplayer__icon" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 14c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1m4 0c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1"></path></svg>`;
+      playButton.innerHTML = pauseSymbol;
     } else {
       audioElement.pause();
-      playButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="audioplayer__icon" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2M9.5 14.67V9.33c0-.79.88-1.27 1.54-.84l4.15 2.67a1 1 0 0 1 0 1.68l-4.15 2.67c-.66.43-1.54-.05-1.54-.84"></path></svg>`;
+      playButton.innerHTML = playSymbol;
     }
   });
 
-  stopButton.addEventListener("click", () => {
-    // console.log(audioElement.duration);
-    stopAudio(audioElement);
-  });
-
   audioElement.addEventListener("timeupdate", () => {
-    // console.log(audioElement.currentTime);
     durationBar.value = audioElement.currentTime;
     const percentage = (durationBar.value / audioElement.duration) * 100;
-    durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, #ddd ${percentage}%)`;
+
+    durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, rgb(83, 83, 83) ${percentage}%)`;
   });
 
   durationBar.addEventListener("input", (event) => {
     audioElement.currentTime = event.target.value;
     const percentage = (durationBar.value / audioElement.duration) * 100;
-    durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, #ddd ${percentage}%)`;
+
+    durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%,rgb(83, 83, 83) ${percentage}%)`;
   });
 
   document.body.append(audioPlayerElement);
-
-  //   Track Select:
-  const trackContainer = document.createElement("div");
-
-  audioDatabase.forEach((track) => {
-    const trackSelectButton = document.createElement("button");
-    trackSelectButton.textContent = `${track.name}`;
-    trackSelectButton.classList.add("trackselect__track");
-
-    trackSelectButton.addEventListener("click", () => {
-      audioElement.pause();
-      audioElement = new Audio(`${track.path}`);
-    });
-
-    trackContainer.append(trackSelectButton);
-  });
-
-  document.body.append(trackContainer);
 }
