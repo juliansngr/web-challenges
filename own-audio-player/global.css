@@ -1,0 +1,24 @@
+.audioplayer {
+  width: 100%;
+}
+
+.audioplayer__progressbar {
+  width: 100%;
+}
+
+.audioplayer__buttoncontainer {
+  display: flex;
+  gap: 25px;
+}
+
+.audioplayer__button {
+  border: none;
+  padding: 10px 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: blueviolet;
+}
+
+.audioplayer__icon {
+  width: 50px;
+}
