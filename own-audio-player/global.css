@@ -1,9 +1,39 @@
+body {
+  background-color: #171717;
+}
+
 .audioplayer {
   width: 100%;
 }
 
 .audioplayer__progressbar {
+  -webkit-appearance: none; /* Entfernt Standard-Styling */
+  appearance: none;
   width: 100%;
+  height: 8px;
+  background: #4ddd6f; /* Farbe des Tracks */
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.audioplayer__progressbar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffffff; /* Farbe des Schiebereglers */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.audioplayer__progressbar::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #33ff81;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .audioplayer__buttoncontainer {
@@ -21,4 +51,9 @@
 
 .audioplayer__icon {
   width: 50px;
+}
+
+.trackselect__track {
+  width: 250px;
+  height: 250px;
 }

@@ -1,4 +1,29 @@
-const audioElement = new Audio(`./audio/snus.mp3`);
+import { audioDatabase } from "../../utils/audio-database.js";
+
+let audioElement = new Audio(``);
+
+// export function TrackSelect() {
+//   const trackContainer = document.createElement("div");
+
+//   audioDatabase.forEach((track) => {
+//     const trackSelectButton = document.createElement("button");
+//     trackSelectButton.textContent = `${track.name}`;
+//     trackSelectButton.classList.add("trackselect__track");
+
+//     trackSelectButton.addEventListener("click", () => {
+//       audioElement.load();
+//       durationBar.value = 0;
+//       const percentage = durationBar.value;
+//       durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, #ddd ${percentage}%)`;
+//       audioElement = new Audio(`${track.path}`);
+//       console.log(audioElement);
+//     });
+
+//     trackContainer.append(trackSelectButton);
+//   });
+
+//   document.body.append(trackContainer);
+// }
 
 function playAudio(audioElement) {
   audioElement.play();
@@ -35,10 +60,9 @@ export function AudioPlayer() {
 
   audioPlayerElement.append(durationBar, buttonContainer);
 
-  console.log(typeof audioElement.duration);
+  //   console.log(typeof audioElement.duration);
 
   playButton.addEventListener("click", () => {
-    console.log("play!");
     durationBar.setAttribute("max", `${audioElement.duration}`);
     if (audioElement.paused) {
       playAudio(audioElement);
@@ -50,19 +74,40 @@ export function AudioPlayer() {
   });
 
   stopButton.addEventListener("click", () => {
-    console.log("stop!");
-    console.log(audioElement.duration);
+    // console.log(audioElement.duration);
     stopAudio(audioElement);
   });
 
   audioElement.addEventListener("timeupdate", () => {
-    console.log(audioElement.currentTime);
+    // console.log(audioElement.currentTime);
     durationBar.value = audioElement.currentTime;
+    const percentage = (durationBar.value / audioElement.duration) * 100;
+    durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, #ddd ${percentage}%)`;
   });
 
   durationBar.addEventListener("input", (event) => {
     audioElement.currentTime = event.target.value;
+    const percentage = (durationBar.value / audioElement.duration) * 100;
+    durationBar.style.background = `linear-gradient(to right, #4ddd6f ${percentage}%, #ddd ${percentage}%)`;
   });
 
   document.body.append(audioPlayerElement);
+
+  //   Track Select:
+  const trackContainer = document.createElement("div");
+
+  audioDatabase.forEach((track) => {
+    const trackSelectButton = document.createElement("button");
+    trackSelectButton.textContent = `${track.name}`;
+    trackSelectButton.classList.add("trackselect__track");
+
+    trackSelectButton.addEventListener("click", () => {
+      audioElement.pause();
+      audioElement = new Audio(`${track.path}`);
+    });
+
+    trackContainer.append(trackSelectButton);
+  });
+
+  document.body.append(trackContainer);
 }
