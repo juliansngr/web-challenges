@@ -1,3 +1,19 @@
 export default function App() {
-  return <h1>Replace me with your component!</h1>;
+  return <Button color="#00FFFF" text="Button!" onClick={handleClick} />;
+}
+
+function handleClick() {
+  console.log("You clicked me!");
+}
+
+function Button({ color, text, disabled, onClick }) {
+  return (
+    <button
+      style={{ backgroundColor: color, height: "100px" }}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {text}
+    </button>
+  );
 }
