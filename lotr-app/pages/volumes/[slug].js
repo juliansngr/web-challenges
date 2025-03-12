@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { volumes } from "../lib/data";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-export default function FellowshipOfTheRingPage() {
-  const currentVolume = volumes.find(
-    ({ slug }) => slug === "the-fellowship-of-the-ring"
-  );
+export default function VolumeDetail() {
+  const router = useRouter();
+
+  const { slug: incomingSlug } = router.query;
+  const currentVolume = volumes.find(({ slug }) => slug === incomingSlug);
 
   const currentIndex = volumes.findIndex(
     (volume) => volume.slug === currentVolume.slug
