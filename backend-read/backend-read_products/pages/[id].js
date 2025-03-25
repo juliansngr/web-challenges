@@ -17,12 +17,28 @@ export default function Product() {
     return;
   }
 
+  console.log(data.reviews);
+
   return (
     <ProductCard>
       <h2>{data.name}</h2>
       <p>Description: {data.description}</p>
       <p>
         Price: {data.price} {data.currency}
+      </p>
+      <p>
+        {" "}
+        {data.reviews &&
+          data.reviews.map((rev) => {
+            return (
+              <>
+                <hr />
+                <p>{rev.title}</p>
+                <p>{rev.text}</p>
+                <p>{rev.rating} / 5</p>
+              </>
+            );
+          })}
       </p>
       <StyledLink href="/">Back to all</StyledLink>
     </ProductCard>
